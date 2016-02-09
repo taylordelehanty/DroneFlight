@@ -34,7 +34,9 @@ public class Commands extends AppCompatActivity {
         });
 
         Button takeoffButton = (Button) findViewById(R.id.takeoff);
+        //
         Button landingButton = (Button) findViewById(R.id.land);
+        //
     }
 
     public void takeoff(View view) {

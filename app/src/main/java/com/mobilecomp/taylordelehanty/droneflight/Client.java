@@ -20,15 +20,15 @@ public class Client extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
         new Thread(new ClientThread()).start();
     }
 
     public void onClick(View view) {
         try {
-            EditText et = (EditText) findViewById(R.id.EditText01);
-            String str = et.getText().toString();
+            //EditText et = (EditText) findViewById(R.id.EditText01);
+            String str = "Hello";
             PrintWriter out = new PrintWriter(new BufferedWriter(
                     new OutputStreamWriter(socket.getOutputStream())),
                     true);
