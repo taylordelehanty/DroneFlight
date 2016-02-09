@@ -13,9 +13,16 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+
 public class Commands extends AppCompatActivity {
 
     Context context = this;
+    private Socket socket;
+    private static final int SERVERPORT = 4444;
+    private static final String SERVER_IP = "192.168.56.1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,12 @@ public class Commands extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        new Thread(new ClientThread()).start();
+
+
+//        Intent client = new Intent (context, Client.class);
+//        startActivity(client);
 
         Button takeoffButton = (Button) findViewById(R.id.takeoff);
         //
@@ -67,5 +80,19 @@ public class Commands extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class ClientThread implements Runnable {
+        @Override
+        public void run() {
+
+            try {
+                InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
+                socket = new Socket(serverAddr, SERVERPORT);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
     }
 }
