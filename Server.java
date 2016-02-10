@@ -2,12 +2,13 @@ import java.net.*;
 import java.io.*;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-public class Server {
+public class KnockKnockServer {
     public static void main(String[] args) throws IOException {
     	System.out.println("PROGRAM MADE");
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(4444);
+            // serverSocket.bind((SocketAddress)"172.23.10.79", 4444);
         } catch (IOException e) {
             System.err.println("Could not listen on port: 4444.");
             System.exit(1);
@@ -31,22 +32,18 @@ public class Server {
         String inputLine, outputLine;
         out.println("SERVER MADE");
         KnockKnockProtocol kkp = new KnockKnockProtocol();
+        kkp.clearFile();
 
-        outputLine = kkp.processInput(null);
-        out.println(outputLine);
-        System.out.println(clientSocket.isBound());
         while ((inputLine = in.readLine()) != null) {
             System.out.println(inputLine + " inside while loop");
-             outputLine = kkp.processInput(inputLine);
-             if(inputLine.equals("t")){
-                Runtime.getRuntime().exec("node repl.js");
+            kkp.processInput(inputLine);
+
+             if(inputLine.equals("Takeoff")){
                 // Runtime.getRuntime().exec("takeoff()");
                 System.out.println("EXECUTED");
              }
-             out.println(outputLine);
-             if (outputLine.equals("Bye."))
-                break;
         }
+        System.out.println(serverSocket.getInetAddress() + " PORT: " + serverSocket.getLocalPort());
         out.close();
         in.close();
         clientSocket.close();
