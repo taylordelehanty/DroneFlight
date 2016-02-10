@@ -53,6 +53,7 @@ public class Commands extends AppCompatActivity {
         //
         Button turningButton = (Button) findViewById(R.id.turn);
         Button landingButton = (Button) findViewById(R.id.land);
+        Button launch = (Button) findViewById(R.id.launch);
         //
     }
 
@@ -75,6 +76,11 @@ public class Commands extends AppCompatActivity {
                 "    this.land();\n" +
                 "  });";
 
+    }
+
+    public void launch(View view) {
+        Intent launcher = new Intent (context, JsDisplayActivity.class);
+        startActivity(launcher);
     }
 
     @Override

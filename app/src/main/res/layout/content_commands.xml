@@ -27,9 +27,19 @@
         android:layout_height="wrap_content"
         android:onClick="turn"
         android:text="@string/turn"
-        android:layout_above="@+id/land"
-        android:layout_alignStart="@+id/land"
-        android:layout_marginBottom="114dp" />
+        android:layout_below="@+id/takeoff"
+        android:layout_alignStart="@+id/takeoff"
+        android:layout_marginTop="62dp" />
+
+    <Button
+        android:id="@+id/launch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="launch"
+        android:text="@string/showScript"
+        android:layout_below="@+id/land"
+        android:layout_alignStart="@+id/turn"
+        android:layout_marginTop="79dp" />
 
     <Button
         android:id="@+id/land"
@@ -37,8 +47,7 @@
         android:layout_height="wrap_content"
         android:onClick="land"
         android:text="Land"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="161dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/launch" />
 
 </RelativeLayout>
