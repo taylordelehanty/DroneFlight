@@ -38,10 +38,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!--<activity-->
-            <!--android:name=".DroneMap"-->
-            <!--android:label="@string/title_activity_drone_map"></activity>-->
-            <!--<activity android:name=".Client"/>-->
+        <activity
+            android:name=".DroneMap"
+            android:label="@string/title_activity_drone_map"></activity>
+
+        <!--<activity android:name=".Client"/>-->
     </application>
 
 </manifest>

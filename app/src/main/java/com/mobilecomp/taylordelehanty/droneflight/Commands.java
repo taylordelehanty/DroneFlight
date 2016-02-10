@@ -22,7 +22,7 @@ public class Commands extends AppCompatActivity {
     Context context = this;
     private Socket socket;
     private static final int SERVERPORT = 4444;
-    private static final String SERVER_IP = "172.23.10.44";
+    private static final String SERVER_IP = "172.23.10.79";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
