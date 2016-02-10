@@ -11,9 +11,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -22,7 +26,7 @@ public class Commands extends AppCompatActivity {
     Context context = this;
     private Socket socket;
     private static final int SERVERPORT = 4444;
-    private static final String SERVER_IP = "172.23.10.79";
+    private static final String SERVER_IP = "172.23.114.33";
     public static String jsString = "var arDrone = require('ar-drone');\n" +
             "var client = arDrone.createClient();\n" +
             "client.createRepl();\n";
@@ -54,6 +58,22 @@ public class Commands extends AppCompatActivity {
         Button turningButton = (Button) findViewById(R.id.turn);
         Button landingButton = (Button) findViewById(R.id.land);
         Button launch = (Button) findViewById(R.id.launch);
+        launch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    PrintWriter out = new PrintWriter(new BufferedWriter(
+                            new OutputStreamWriter(socket.getOutputStream())),
+                            true);
+
+                    out.println(jsString);
+                    Intent launcher = new Intent (context, JsDisplayActivity.class);
+                    startActivity(launcher);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         //
     }
 
@@ -108,10 +128,13 @@ public class Commands extends AppCompatActivity {
     class ClientThread implements Runnable {
         @Override
         public void run() {
+            System.out.println("CREATING CLIENT");
 
             try {
+                System.out.println("IN TRY IN CLIENT");
                 InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
                 socket = new Socket(serverAddr, SERVERPORT);
+                System.out.println("SOCKET MADE");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
