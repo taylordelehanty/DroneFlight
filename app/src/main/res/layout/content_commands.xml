@@ -22,13 +22,23 @@
         android:text="Takeoff"/>
 
     <Button
+        android:id="@+id/turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="turn"
+        android:text="@string/turn"
+        android:layout_above="@+id/land"
+        android:layout_alignStart="@+id/land"
+        android:layout_marginBottom="114dp" />
+
+    <Button
         android:id="@+id/land"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="land"
-        android:layout_below="@+id/takeoff"
+        android:text="Land"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:text="Land"/>
+        android:layout_marginBottom="161dp" />
 
 </RelativeLayout>

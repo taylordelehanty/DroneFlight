@@ -23,6 +23,9 @@ public class Commands extends AppCompatActivity {
     private Socket socket;
     private static final int SERVERPORT = 4444;
     private static final String SERVER_IP = "172.23.10.79";
+    public static String jsString = "var arDrone = require('ar-drone');\n" +
+            "var client = arDrone.createClient();\n" +
+            "client.createRepl();\n";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +51,30 @@ public class Commands extends AppCompatActivity {
 
         Button takeoffButton = (Button) findViewById(R.id.takeoff);
         //
+        Button turningButton = (Button) findViewById(R.id.turn);
         Button landingButton = (Button) findViewById(R.id.land);
         //
     }
 
     public void takeoff(View view) {
-        Toast.makeText(this, "Takeoff!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Takeoff!", Toast.LENGTH_LONG).show();
+        jsString = jsString + "client.takeoff();\n" +
+                "client";
     }
 
+    public void turn(View view) {
+        jsString = jsString + ".after(5000, function() {\n" +
+                "    this.clockwise(0.5);\n" +
+                "  })";
+
+    }
     public void land(View view) {
-        Toast.makeText(this, "Landing!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Landing!", Toast.LENGTH_LONG).show();
+        jsString = jsString + ".after(1000, function() {\n" +
+                "    this.stop();\n" +
+                "    this.land();\n" +
+                "  });";
+
     }
 
     @Override
